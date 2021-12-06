@@ -14,8 +14,32 @@ namespace KWDMAktywnosc.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
+        #region Properties
+        private PlotModel _model;
+        public PlotModel Model 
+        {
+            get { return _model; }
+            set { SetProperty(ref _model, value); }
+        }
 
-        public PlotModel Model { get; set; }
+        public string _fileName;
+        public string FileName
+        {
+            get { return _fileName; }
+            set { SetProperty(ref _fileName, value); }
+        }
+
+        public string _filePath;
+        public string FilePath
+        {
+            get { return _filePath; }
+            set { SetProperty(ref _filePath, value); }
+        }
+        #endregion
+
+        #region Commands
+        public IMvxAsyncCommand PickFilkeCommand { get; set; }
+        #endregion
 
         public MainViewModel()
         {
@@ -27,6 +51,12 @@ namespace KWDMAktywnosc.Core.ViewModels
             this.Model = new PlotModel { Title = "Example 1" };
             this.Model.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "cos(x)"));
             return base.Initialize();
+        }
+
+        public void HandleChosenFile(string fileName, string safeFileName)
+        {
+            FilePath = fileName;
+            FileName = safeFileName;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KWDMAktywnosc.Core.ViewModels;
+using Microsoft.Win32;
 using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,15 @@ namespace KWDMAktywnosc.Wpf.Views
             InitializeComponent();
         }
         protected MainViewModel MainViewModel => ViewModel as MainViewModel;
+
+        private void LoadDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "TXT files (*.txt)|*.txt";
+            if (dialog.ShowDialog() == true)
+            {
+                MainViewModel.HandleChosenFile(dialog.FileName, dialog.SafeFileName);
+            }
+        }
     }
 }

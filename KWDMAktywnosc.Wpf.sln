@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KWDMAktywnosc.Wpf", "KWDMAktywnosc.Wpf\KWDMAktywnosc.Wpf.csproj", "{8690F362-B641-4B6D-B17A-5B9F7FD7647D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KWDMAktywnosc.Core", "KWDMAktywnosc.Core\KWDMAktywnosc.Core.csproj", "{43DD07D0-847E-413E-AF15-8EDF05E39FB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8690F362-B641-4B6D-B17A-5B9F7FD7647D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8690F362-B641-4B6D-B17A-5B9F7FD7647D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8690F362-B641-4B6D-B17A-5B9F7FD7647D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8690F362-B641-4B6D-B17A-5B9F7FD7647D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DD07D0-847E-413E-AF15-8EDF05E39FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DD07D0-847E-413E-AF15-8EDF05E39FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DD07D0-847E-413E-AF15-8EDF05E39FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DD07D0-847E-413E-AF15-8EDF05E39FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52CD0681-CEB0-44D4-80B3-AE0878015828}
+	EndGlobalSection
+EndGlobal

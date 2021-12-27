@@ -24,7 +24,15 @@
         <!--1st row-->
         <Label Content="Wybrany plik: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="0,0,0,9"/>
         <Label Content="{Binding FileName}" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom"/>
-        <ComboBox Text="Rodzaj czujnika" Grid.Row="0" Grid.Column="2" Height="25"/>
+        <ComboBox x:Name="sensorTypeComboBox" Text="Rodzaj czujnika" Grid.Row="0" Grid.Column="2" Height="25" ItemsSource="{Binding ReadingPlotTypes}" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Description}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <!--2nd row-->
         <StackPanel x:Name="buttonListView" Grid.Row="1" Grid.Column="0">

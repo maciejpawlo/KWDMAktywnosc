@@ -5,12 +5,9 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.ML" Version="1.7.0" />
 		<PackageReference Include="MvvmCross" Version="7.1.2" />
 		<PackageReference Include="OxyPlot.Core" Version="2.1.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Models\" />
 	</ItemGroup>
 	
 </Project>

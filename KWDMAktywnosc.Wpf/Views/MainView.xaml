@@ -36,10 +36,44 @@
 
         <!--2nd row-->
         <StackPanel x:Name="buttonListView" Grid.Row="1" Grid.Column="0">
-            <ComboBox Text="Rodzaj Przetwarzania" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10"/>
+            <!--<ComboBox Text="Rodzaj Przetwarzania" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10"/>-->
             <Button x:Name="LoadDataButton" Content="Wczytaj dane" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10" Click="LoadDataButton_Click"/>
-            <Button Content="Zacznij przetwarzanie" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10"/>
+            <Button Content="Zacznij przetwarzanie" Command="{Binding StartProcessingCommand}" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10"/>
+
+            <!--<StackPanel>
+                <Label Content="WYNIKI: "/>
+            </StackPanel>-->
+            <Grid Visibility ="{Binding AreResultsVisbile, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--1st row-->
+                <Label Content="Wyniki" Grid.Row="0" Grid.Column="0"/>
+                <!--2nd row-->
+                <Label Content="Liczba klastrów" Grid.Row="1" Grid.Column="0"/>
+                <Label Content="5" Grid.Row="1" Grid.Column="1"/>
+                <!--3rd row-->
+                <Label Content="Klaster wejścia" Grid.Row="2" Grid.Column="0"/>
+                <Label Content="{Binding ClusterId}" Grid.Row="2" Grid.Column="1"/>
+                <!--4th row-->
+                <Label Content="Odległości" Grid.Row="3" Grid.Column="0"/>
+                <Label Content="{Binding Distances}" Grid.Row="3" Grid.Column="1"/>
+                <!--5th row-->
+                <!--<Label Content="Współrzędne centroidów" Grid.Row="4" Grid.Column="0"/>
+                <Label Content="{Binding CentroidCoords}" Grid.Row="3" Grid.Column="1"/>-->
+            </Grid>
+            
         </StackPanel>
         <oxy:PlotView Model="{Binding Model}" Grid.Row="1" Grid.Column="2"/>
+        
+        
     </Grid>
 </views:MvxWpfView>

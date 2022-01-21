@@ -4,7 +4,70 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="LearningData\alag.txt" />
+    <None Remove="LearningData\ang.txt" />
+    <None Remove="LearningData\brajan.txt" />
+    <None Remove="LearningData\damian3.txt" />
+    <None Remove="LearningData\kamil.txt" />
+    <None Remove="LearningData\kasia.txt" />
+    <None Remove="LearningData\kla.txt" />
+    <None Remove="LearningData\kubad.txt" />
+    <None Remove="LearningData\lski.txt" />
+    <None Remove="LearningData\mateusz.txt" />
+    <None Remove="LearningData\nicol.txt" />
+    <None Remove="LearningData\nydzio.txt" />
+    <None Remove="LearningData\pati.txt" />
+    <None Remove="LearningData\rejtan2.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LearningData\alag.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\ang.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\brajan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\damian3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\kamil.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\kasia.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\kla.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\kubad.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\lski.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\mateusz.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\nicol.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\nydzio.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\pati.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LearningData\rejtan2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 	<ItemGroup>
+		<PackageReference Include="MathNet.Numerics" Version="4.15.0" />
 		<PackageReference Include="Microsoft.ML" Version="1.7.0" />
 		<PackageReference Include="MvvmCross" Version="7.1.2" />
 		<PackageReference Include="OxyPlot.Core" Version="2.1.0" />

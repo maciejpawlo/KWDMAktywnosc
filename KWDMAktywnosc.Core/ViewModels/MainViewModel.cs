@@ -12,6 +12,7 @@ using OxyPlot.Series;
 using KWDMAktywnosc.Core.Services.Implementation;
 using KWDMAktywnosc.Core.Models;
 using OxyPlot.Axes;
+using KWDMAktywnosc.Core.Services;
 
 namespace KWDMAktywnosc.Core.ViewModels
 {
@@ -25,7 +26,7 @@ namespace KWDMAktywnosc.Core.ViewModels
             set { SetProperty(ref _model, value); }
         }
 
-        public string _fileName;
+        private string _fileName;
         public string FileName
         {
             get { return _fileName; }
@@ -39,38 +40,69 @@ namespace KWDMAktywnosc.Core.ViewModels
             set { SetProperty(ref _filePath, value); }
         }
 
-        public List<ReadingPlotType> _readingPlotTypes;
+        private List<ReadingPlotType> _readingPlotTypes;
         public List<ReadingPlotType> ReadingPlotTypes
         {
             get { return _readingPlotTypes; }
             set { SetProperty(ref _readingPlotTypes, value); }
         }
 
-        public List<Reading> _readings;
+        private List<Reading> _readings;
         public List<Reading> Readings
         {
             get { return _readings; }
             set { SetProperty(ref _readings, value); }
         }
 
+        private ReadingPlotType _selectedPlotType;
+        public ReadingPlotType SelectedPlotType
+        {
+            get { return _selectedPlotType; }
+            set { SetProperty(ref _selectedPlotType, value); }
+        }
+
+        private string _clusterId;
+        public string ClusterId
+        {
+            get { return _clusterId; }
+            set { SetProperty(ref _clusterId, value); }
+        }
+
+        private string _distances;
+        public string Distances
+        {
+            get { return _distances; }
+            set { SetProperty(ref _distances, value); }
+        }
+
+        private bool _areResultsVisbile;
+        public bool AreResultsVisbile
+        {
+            get { return _areResultsVisbile; }
+            set { SetProperty(ref _areResultsVisbile, value); }
+        }
         #endregion
 
         #region Commands
-        public IMvxAsyncCommand PickFilkeCommand { get; set; }
+        public IMvxAsyncCommand StartProcessingCommand { get; set; }
         #endregion
 
         #region Services
         private readonly IInputReaderService inputReaderService;
+        private readonly IKMeansClusteringService kmeansService;
         #endregion
 
-        public MainViewModel(IInputReaderService inputReaderService)
+        public MainViewModel(IInputReaderService inputReaderService, IKMeansClusteringService kmeansService)
         {
             this.inputReaderService = inputReaderService;
+            this.kmeansService = kmeansService;
+            StartProcessingCommand = new MvxAsyncCommand(StartProcessingData);
         }
 
         public override Task Initialize()
         {
             this.Model = new PlotModel { Title = "Plot" };
+            this.AreResultsVisbile = false;
             this.ReadingPlotTypes = new List<ReadingPlotType>()
             {
                 new ReadingPlotType { ReadingType = ReadingType.Accelerometer, Description = "Accelerometer" },
@@ -90,11 +122,28 @@ namespace KWDMAktywnosc.Core.ViewModels
             FileName = safeFileName;
             var inputFromFile = inputReaderService.ReadSensorsInput(FilePath);
             Readings = inputFromFile;
+            var dupa = inputFromFile.Where(r => (int)r.ReadingType == -1).Distinct().Select(x=>x.Time);
+            var groupedByTimeStamps = inputFromFile.Where(r => (int)r.ReadingType != -1).GroupBy(r => r.Time);
         }
 
         public void HandleReadingPlotTypeSelectionChanged(ReadingPlotType selectedPlotType)
         {
+            SelectedPlotType = selectedPlotType;
             this.Model = CreatePlotModelFromInput(selectedPlotType);
+        }
+
+        private async Task StartProcessingData()
+        {
+            if (SelectedPlotType == null)
+            {
+                return;
+            }
+
+            var result = kmeansService.PerformKMeans(Readings, SelectedPlotType.ReadingType);
+            this.AreResultsVisbile = true;
+            ClusterId = result.Predction.PredictedClusterId.ToString();
+            var distances = result.Predction.Distances;
+            Distances = string.Join("\n", distances);
         }
 
         private PlotModel CreatePlotModelFromInput(ReadingPlotType selectedPlotType)

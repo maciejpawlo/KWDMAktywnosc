@@ -122,8 +122,6 @@ namespace KWDMAktywnosc.Core.ViewModels
             FileName = safeFileName;
             var inputFromFile = inputReaderService.ReadSensorsInput(FilePath);
             Readings = inputFromFile;
-            var dupa = inputFromFile.Where(r => (int)r.ReadingType == -1).Distinct().Select(x=>x.Time);
-            var groupedByTimeStamps = inputFromFile.Where(r => (int)r.ReadingType != -1).GroupBy(r => r.Time);
         }
 
         public void HandleReadingPlotTypeSelectionChanged(ReadingPlotType selectedPlotType)

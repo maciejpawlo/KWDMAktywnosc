@@ -36,13 +36,9 @@
 
         <!--2nd row-->
         <StackPanel x:Name="buttonListView" Grid.Row="1" Grid.Column="0">
-            <!--<ComboBox Text="Rodzaj Przetwarzania" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10"/>-->
             <Button x:Name="LoadDataButton" Content="Wczytaj dane" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10" Click="LoadDataButton_Click"/>
             <Button Content="Zacznij przetwarzanie" Command="{Binding StartProcessingCommand}" Width="{Binding ActualWidth, ElementName=buttonListView}" Margin="0,0,0,10"/>
 
-            <!--<StackPanel>
-                <Label Content="WYNIKI: "/>
-            </StackPanel>-->
             <Grid Visibility ="{Binding AreResultsVisbile, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -66,9 +62,6 @@
                 <!--4th row-->
                 <Label Content="Odległości" Grid.Row="3" Grid.Column="0"/>
                 <Label Content="{Binding Distances}" Grid.Row="3" Grid.Column="1"/>
-                <!--5th row-->
-                <!--<Label Content="Współrzędne centroidów" Grid.Row="4" Grid.Column="0"/>
-                <Label Content="{Binding CentroidCoords}" Grid.Row="3" Grid.Column="1"/>-->
             </Grid>
             
         </StackPanel>
